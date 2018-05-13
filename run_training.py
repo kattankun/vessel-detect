@@ -16,13 +16,14 @@ config.readfp(open(r'./configuration.txt'))
 name_experiment = config.get('experiment name', 'name')
 nohup = config.getboolean('training settings', 'nohup')   #std output on log file?
 # name_experiment = 'test'
-# nohup = True
+# nohup をTrueにすると仮想環境などから抜けても処理を続けてくれるようになる。
 
 run_GPU = '' if sys.platform == 'win32' else ' THEANO_FLAGS=device=gpu,floatX=float32 '
 
 #create a folder for the results
 result_dir = name_experiment
 print("\n1. Create directory for the results (if not already existing)")
+#\nは改行
 if os.path.exists(result_dir):
     print("Dir already existing")
 elif sys.platform=='win32':
